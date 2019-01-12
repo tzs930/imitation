@@ -39,7 +39,13 @@ class RLGymSim(policyopt.Simulation):
         self.env.render()
         if track_body_name is not None and track_body_name in self.env.model.body_names:
             self.env.viewer.cam.trackbodyid = self.env.model.body_names.index(track_body_name)
-
+    
+    def draw_image(self, track_body_name=None):
+        image = self.env.render(mode='rgb_array')
+        if track_body_name is not None and track_body_name in self.env.model.body_names:
+            self.env.viewer.cam.trackbodyid = self.env.model.body_names.index(track_body_name)
+        return image
+    
     def __del__(self):
         if self.env.viewer:
             self.env.viewer.finish()
