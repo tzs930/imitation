@@ -7,6 +7,11 @@ from gym import spaces, envs
 gym.undo_logger_setup()
 import logging; logging.getLogger('gym.core').addHandler(logging.NullHandler())
 
+from pyvirtualdisplay import Display
+display = Display(visible=0, size=(1400, 900))
+display.start()
+import os
+os.environ["DISPLAY"] = ":" + str(display.display) + "." + str(display.screen)
 
 class RLGymSim(policyopt.Simulation):
     def __init__(self, env_name):
